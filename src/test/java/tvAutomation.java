@@ -12,6 +12,7 @@ import org.junit.Test;
 public class tvAutomation {
 
     private AndroidDriver driver;
+    private Helpers helpers;
 
     private URL getUrl() {
         try {
@@ -40,11 +41,10 @@ public class tvAutomation {
 
     @Test
     public void sampleTest() throws InterruptedException {
-        Thread.sleep(5000);
-        driver.findElement(AppiumBy.xpath("//android.view.View[@resource-id=\"login\"]")).click();
-        driver.findElement(AppiumBy.xpath("//android.view.View[@resource-id=\"emailLoginNavDrawer\"]")).click();
-        driver.findElement(AppiumBy.xpath("//android.widget.EditText[@resource-id=\"emailTextField\"]")).sendKeys("email");
-        Thread.sleep(5000);
+        helpers = new Helpers();
+        helpers.clickElement(driver, "//android.view.View[@resource-id=\"login\"]");
+        helpers.clickElement(driver, "//android.view.View[@resource-id=\"emailLoginNavDrawer\"]");
+        helpers.sendKeys(driver, "//android.widget.EditText[@resource-id=\"emailTextField\"]", "email");
     }
 
     @After
